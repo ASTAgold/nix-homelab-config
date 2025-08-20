@@ -7,7 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hosts/peter/hardware-configuration.nix
     ];
 
   # Bootloader.
