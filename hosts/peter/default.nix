@@ -5,8 +5,46 @@
     ./hardware-configuration.nix
     ./../../modules/docker.nix
   ];
+  
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "peter";
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Set your time zone.
+  time.timeZone = "Africa/Casablanca";
+
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "ar_MA.UTF-8";
+    LC_IDENTIFICATION = "ar_MA.UTF-8";
+    LC_MEASUREMENT = "ar_MA.UTF-8";
+    LC_MONETARY = "ar_MA.UTF-8";
+    LC_NAME = "ar_MA.UTF-8";
+    LC_NUMERIC = "ar_MA.UTF-8";
+    LC_PAPER = "ar_MA.UTF-8";
+    LC_TELEPHONE = "ar_MA.UTF-8";
+    LC_TIME = "ar_MA.UTF-8";
+  };
+
+  # Configure keymap in X11
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
+
+# Allow unfree packages
+nixpkgs.config.allowUnfree = true;
+
+# Enable the OpenSSH daemon.
+services.openssh.enable = true;
+
 
 #   # Container definitions for the Dell
 #   virtualisation.oci-containers.containers = {
@@ -59,18 +97,18 @@
 #     '';
 #   };
 
-  services.samba = {
-    enable = true;
-    shares = {
-      storage = {
-        path = "/mnt/storage";
-        "guest ok" = "yes";
-        "read only" = "no";
-        "create mask" = "0664";
-        "directory mask" = "0775";
-      };
-    };
-  };
+#   services.samba = {
+#     enable = true;
+#     shares = {
+#       storage = {
+#         path = "/mnt/storage";
+#         "guest ok" = "yes";
+#         "read only" = "no";
+#         "create mask" = "0664";
+#         "directory mask" = "0775";
+#       };
+#     };
+#   };
 
   # User definition with host-specific permissions
   users.users.admin = {
@@ -84,3 +122,5 @@
     imports = [ ./../../users/admin.nix ];
   };
 }
+
+  system.stateVersion = "25.05"; # Did you read the comment?
