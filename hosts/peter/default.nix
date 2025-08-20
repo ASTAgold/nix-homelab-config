@@ -121,6 +121,7 @@ services.openssh.enable = true;
   home-manager.users.admin = {
     imports = [ ./../../users/admin.nix ];
   };
+
+    system.stateVersion = "25.05"; # Did you read the comment?
 }
 
-  system.stateVersion = "25.05"; # Did you read the comment?
