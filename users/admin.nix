@@ -7,5 +7,7 @@
     htop
     glances
     git
+    bash
+    glibc
   ];
 }
