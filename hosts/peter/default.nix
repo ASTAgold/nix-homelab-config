@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./../../modules/docker.nix
+    # ./../../modules/docker.nix
   ];
   
   # Bootloader.
@@ -60,30 +60,30 @@ services.openssh.enable = true;
 #       ];
 #     };
 
-
-  # Storage configuration
-  fileSystems."/mnt/data1" = {
-    device = "/dev/disk/by-uuid/<YOUR_DRIVE1_UUID>";
-    fsType = "ext4";
-  };
-  fileSystems."/mnt/data2" = {
-    device = "/dev/disk/by-uuid/<YOUR_DRIVE2_UUID>";
-    fsType = "ext4";
-  };
-  fileSystems."/mnt/parity" = {
-    device = "/dev/disk/by-uuid/<YOUR_PARITY_UUID>";
-    fsType = "ext4";
-  };
-
-  services.mergerfs = {
-    enable = true;
-    pools = [{
-      name = "storage";
-      paths = [ "/mnt/data1" "/mnt/data2" ];
-      mountPoint = "/mnt/storage";
-      options = "defaults,allow_other,use_ino";
-    }];
-  };
+# 
+#   # Storage configuration
+#   fileSystems."/mnt/data1" = {
+#     device = "/dev/disk/by-uuid/<YOUR_DRIVE1_UUID>";
+#     fsType = "ext4";
+#   };
+#   fileSystems."/mnt/data2" = {
+#     device = "/dev/disk/by-uuid/<YOUR_DRIVE2_UUID>";
+#     fsType = "ext4";
+#   };
+#   fileSystems."/mnt/parity" = {
+#     device = "/dev/disk/by-uuid/<YOUR_PARITY_UUID>";
+#     fsType = "ext4";
+#   };
+# 
+#   services.mergerfs = {
+#     enable = true;
+#     pools = [{
+#       name = "storage";
+#       paths = [ "/mnt/data1" "/mnt/data2" ];
+#       mountPoint = "/mnt/storage";
+#       options = "defaults,allow_other,use_ino";
+#     }];
+#   };
 
 #   services.snapraid = {
 #     enable = true;

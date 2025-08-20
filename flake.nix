@@ -8,14 +8,22 @@
   };
 
   outputs = { self, nixpkgs, home-manager, ... }: {
+  	# Add this block to enable flakes and nix-command permanently
+  	nix = {
+  	  extraOptions = ''
+  	    experimental-features = nix-command flakes
+  	  '';
+  	};
+
+  	
     nixosConfigurations = {
-      "stewie" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./hosts/stewie/default.nix
-          home-manager.nixosModules.home-manager
-        ];
-      };
+      # "stewie" = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     ./hosts/stewie/default.nix
+      #     home-manager.nixosModules.home-manager
+      #   ];
+      # };
 
       "peter" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
